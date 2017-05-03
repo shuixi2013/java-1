@@ -1,0 +1,335 @@
+
+	工具类、文件监控器、输入、输出、过滤器、比较器
+	
+1.1 Utility Classes
+	工具类包括FileUtils、IOUtils、FilenameUtils和FileSystemUtils,
+	前三者的方法并没有多大的区别，只是操作的对象不同，
+	FileUtils主要操作File类，
+	IOUtils主要操作IO流，
+	FilenameUtils则是操作文件名，
+	FileSystemUtils包含了一些JDK没有提供的用于访问文件系统的实用方法。
+	当前，只有一个用于读取硬盘空余空间的方法可用long freeSpace = FileSystemUtils.freeSpace("C:/");
+	
+	FieUtils提供文件操作（移动文件，读取文件，检查文件是否存在等等）的方法
+ 		File file = new File("/commons/io/project.properties");
+		List lines = FileUtils.readLines(file, "UTF-8");
+		openInputSteam：打开指定文件的输入流
+		readFileToString：将文件内容作为字符串返回
+		readLines：将文件内容按行返回到一个字符串数组中
+		getTempDirectory(): 返回系统临时目录.
+		getUserDirectory(): 返回用户目录.
+		lineIterator(File file): 返回给定文件，所有的行，可以对所有的行进行循环操作
+		contentEquals(File file1, File file2): 比较两个文件的内容，返回他们的内容是否相同.
+		sizeOfDirectory(File directory): 返回文件夹大小.
+		size：返回文件或目录的大小
+		write：将字符串内容直接写到文件中
+		writeByteArrayToFile:将字节数组内容写到文件中
+		writeLines：将容器中的元素的toString方法返回的内容依次写入文件中  可以添加到后面
+		writeStringToFile：将字符串内容写到文件中
+		
+		listFiles：列出指定目录下的所有文件
+	 	FileUtils.listFiles(File directory, String[] extensions, boolean recursive);  
+		FileUtils.listFiles(File directory, IOFileFilter fileFilter, IOFileFilter dirFilter) ; 
+		
+		cleanDirectory：清空目录，但不删除目录
+		deleteDirectory：删除目录
+		deleteQuietly：删除文件
+		deleteDirectory(File directory):  递归删除文件夹.
+		
+		copyDirectory：将一个目录内容拷贝到另一个目录。可以通过FileFilter过滤需要拷贝的文件。
+		copyFile：将一个文件拷贝到一个新的地址
+		copyFileToDirectory：将一个文件拷贝到某个目录下
+		copyInputStreamToFile：将一个输入流中的内容拷贝到某个文件
+		copyDirectory(File source, File destination):从一个文件夹拷贝内容到另外一个文件夹，包括子目录。
+		copyDirectory(File source, File destination, FileFilter filter): 基本用途类似，但多了一个过滤条件，只拷贝满足条件的文件或子文件夹，比如根据名称，修改时间等过滤
+		copyFile(File srcFile, File destFile): 拷贝文件
+				
+	 IOCase：提供字符串操作以及比较的方法。
+	 IOUtils ：contains utility methods dealing with reading, writing and copying. The methods work on InputStream, OutputStream, Reader and Writer.
+				InputStream in = new URL( "http://jakarta.apache.org" ).openStream();
+			 try {
+			   InputStreamReader inR = new InputStreamReader( in );
+			   BufferedReader buf = new BufferedReader( inR );
+			   String line;
+			   while ( ( line = buf.readLine() ) != null ) {
+			     System.out.println( line );
+			   }
+			 } finally {
+			   in.close();
+			 }
+			InputStream in = new URL( "http://jakarta.apache.org" ).openStream();
+		 try {
+		   System.out.println( IOUtils.toString( in ) );
+		 } finally {
+		   IOUtils.closeQuietly(in);
+		 }
+	FilenameUtils： 这个工具类是用来处理文件名（译者注：包含文件路径）的，他可以轻松解决不同操作系统文件名称规范不同的问题（比如windows和Unix）（在Unix系统以及Linux系统中文件分隔符是“/”，不支持”\“，windows中支持”\“以及”/“）。
+			String filename = "C:/commons/io/../lang/project.xml";
+	 		String normalized = FilenameUtils.normalize(filename);
+			 // result is "C:/commons/lang/project.xml"
+	
+	 CopyUtils ：提供复制操作： 都是静态函数,没啥亮点 
+	
+ 1.2 文件监控器
+
+org.apache.commons.io.monitor包下的类包含的方法可以获取文件的指定信息，不过更重要的是，它可以创建处理器（handler）来跟踪指定文件或目录的变化并且可以在文件或目录发生变化的时候进行一些操作。让我们来看看下面的代码：
+
+1.3 过滤器
+
+	过滤器可以以组合的方式使用并且它的用途非常多样。它可以轻松的区分不同的文件并且找到满足我们条件的文件。
+	我们可以组合不同的过滤器来执行文件的逻辑比较并且精确的获取我们所需要文件，而无需使用冗余的字符串比较来寻找我们的文件。
+
+	1.基本功能过滤器  
+		①类型：DirectoryFileFilter、FileFileFilter  
+		②大小：EmptyFileFilter、SizeFileFilter  
+		③时间：AgeFileFilter  
+		④名称：NameFileFilter、PrefixFileFilter、SuffixFileFilter、RegexFileFilter、WildcardFileFilter  
+		⑤读写属性：CanReadFileFilter、CanWriteFileFilter  
+		⑥隐藏属性：HiddenFileFilter  
+	2.逻辑关系过滤器  
+		①逻辑与：AndFileFilter  
+		②逻辑或：OrFileFilter  
+		③逻辑非：NotFileFilter  
+		④永真/假：TrueFileFilter、FalseFileFilter  
+	3.过滤器容器  
+		①工具类：FileFilterUtils  	
+  
+	【三】思路  
+		①使用递归方法遍历所有目录  
+		②采用FileFilter定义的各种类型进行组合  
+		1. IOFileFilter接口  
+			这个接口就是分别实现了FileFilter和FilenameFilter这个两个接口，作为最上层的  
+			接口，这个在后面的所有的filefilter里面可能都会实现这个接口  
+		2. ConditionalFileFilter接口  
+			这个接口从名字上可以看出来就是对一系列的FileFilter做操作，然后实际上就是实现了  
+			对IOFileFilter的增，删，查和设置操作。其实我们应该能想到得是肯定会有子类去实现这个  
+			接口来实现一些FileFilter的组合逻辑。比如And，Or等等，我们下面就会看到。  
+		3.AbstractFileFilter抽象类  
+			这个类其实也没什么，主要是实现了IOFileFilter，但是这个实现稍微有点技巧，就是  
+			类被标记成abstract了，但是方法都是实现了，在类的注释里面也写的很清楚，就是子类  
+			必须实现其中一个方法，负责就陷入到死循环中去了，我们来稍微看一下吧。  
+			 public boolean accept(File file) {  
+			        return accept(file.getParentFile(), file.getName());  
+			    }  
+		  	这个实际上是FileFilter的实现，它调用了FilenameFilter的实现。  
+			public boolean accept(File dir, String name) {  
+			        return accept(new File(dir, name));  
+			    }  
+			这个实际上是FilenameFilter的实现，它调用了FileFilter的实现。  
+			所以这个就有了像注释里面说的，如果不实现其中一个就会陷入到死循环之中。  
+		4. AgeFileFilter类的理解  
+			这个类比较好理解，实际上就是用户可以指定一个时间，然后选出来这个时间点新或者旧  
+			的文件，由acceptOlder这个标志位进行标记。这个实现我想大家应该自己都会写，就是  
+			取得当前文件的最后修改时间，然后和用户传近来的时间点做比较，再根据acceptOlder标志位来看看应该accept。  
+		5. CanReadFileFilter类的理解  
+			这个类比较好理解，从类名上我们就可以看出就是实现对文件的canRead的一个筛选，  
+		6. CanWriteFileFilter类的理解  
+			这个类也比较好理解，从类名上我们可以看出就是实现对文件的canWrite的一个筛选，  
+		7. DelegateFileFilter类的理解  
+			从这个类的命名上我们就可以看出，这个类的意图是实现delegate操作的，这个类是实现  
+			IOFileFilter的，那么在这个实现类里面就肯定要传近来两个delegate，一个是FileFilter，  
+			一个是FilenameFilter，然后调用delegate的accept方法，如果某一个FileFilter是null  
+			的时候就调用父类的就行了。  
+		8. DirectoryFileFilter类的理解  
+			从这个类的命名上我们也可以看出，就是为了实现筛选目录功能的，肯定在实现的时候会调用File的isDirectory方法就行了。  
+		9. EmptyFileFilter类的理解  
+			从这个类的命名上我们也可以看出，就是来判断File或者Directory是不是empty，对于目录来说，是判断它底下有没有file，当然也包括directory了，对于file来说就是判断它的length是不是0。  
+		10. FalseFileFilter类的理解  
+			这个类最好理解了，就是两个accept方法都返回false，做的比较绝情，真不知道在什么场景下用。  
+		11. FalseFileFilter类的理解  
+			这个类也很好理解，就是在accept方法里面判断文件是不是File类型，然后将结果返回  
+		12. HiddenFileFilter类的理解  
+			这个类也很好理解，就是在accept方法里面判断文件是不是隐藏文件，这个就不多说了  
+		13. NameFileFilter类的理解  
+			这个类的意图如果我们看类名的话估计是会因为它实现的是和FilenameFilter差不多，其实不然。  
+			这个类主要是实现了，以指定的Name或者Name[]来进行Filter文件的功能。其实还有一个就是大家  
+			看到Name应该就会想到Case Sentivity的问题，所以在这里，作者已经想到了，就是会传递一个  
+			IOCase进来，可以指定是否大小写敏感。  
+			下面的例子中给出了它的典型应用  
+			File dir = new File(".");  
+			 String[] files = dir.list( new NameFileFilter("Test") );  
+			 for ( int i = 0; i < files.length; i++ ) {  
+			     System.out.println(files[i]);  
+			 }  
+			我想我们应该能想到它是怎么实现的，不过还是稍微看一些它的代码：  
+			public boolean accept(File file) {  
+			        String name = file.getName();  
+			        for (int i = 0; i < this.names.length; i++) {  
+			            if (caseSensitivity.checkEquals(name, names[i])) {  
+			                return true;  
+			            }  
+			        }  
+			        return false;  
+			    }  
+			就是拿到文件名，然后遍历传递过来的文件数组进行循环，再使用CaseSessiontity进行判断，  
+			如果有一个满足跳进啊，就直接返回。  
+		14. NotFileFilter类的学习  
+			这个类从名字上我们可以看出就是实现FileFilter的Not操作，但是稍微有点不同的是，就是对代理的FileFilter做非操作。这个就不仔细讲了，大家都明白。  
+		15. OrFileFilter类的学习  
+			这个类的名字是实现ConditiaonalFileFilter的，也就是对一系列的FileFilter实现或逻辑，  
+			如果有一个满足条件，那么就返回。我就不贴代码了。我们可以想一下，如果让我们来实现这个的话，应该是什么样子的，肯定是要用一个List来保持要进行Or操作的所有的FileFilter了，然后就是可以要实现对这个List的add，remove，get和获得操作，然后在最重要的accept方法里面会遍历这个List进行accept操作，然后又符合要求的就直接返回。  
+		16. PrefixFileFilter类的学习  
+			这个类的意图感觉从名字上可以清晰地看出来，就是根据文件的前缀进行Filter文件，那么提到这个我们应该能想到这个应该是CaseSensitivity的。我们应该也能想到，就是这个在构造函数里面应该要传递一个筛选的Prefix数组进行filter，所以这个类的大体框架也就有了，就是一个IOCase，一个用于过滤的prefix数组，具体的实现逻辑我就不讲了，感觉稍微想一下，看看我们如果写的是怎么实现，它现在是怎么说实现的，然后比较一下我感觉会有帮助的。  
+		17. RegexFileFilter类的学习  
+			这个类我们从名字上应该能看出来意图，主要是接收一个Pattern，然后再根据文件名来判断是不是  
+			和当前的Pattern里面是不是匹配，这个也很好理解。  
+			只给我一个使用实例吧：  
+			File dir = new File(".");  
+			 FileFilter fileFilter = new RegexFileFilter("^.*[tT]est(-\\d+)?\\.java$");  
+			 File[] files = dir.listFiles(fileFilter);  
+			 for (int i = 0; i < files.length; i++) {  
+			   System.out.println(files[i]);  
+			 }  
+		18. SizeFileFilter类的学习  
+			这个类从命名上就可以看出它第意图，就是根据文件的大小来进行筛选文件。那么如果我们来实现这个功能的话，肯定是要有两个很重要的参数，一个是可接受的大小，一个是满足条件的是比传入的值大，还是小。 它也是这么实现的，一个是size属性，一个是acceptLarger属性，所以这个的实现我想大家应该也明白了，就不多讲了。  
+		19. SuffixFileFilter类的学习  
+			这个类从命名上也很容易看到它的意图，就是根据suffix来进行对文件的过滤，这个肯定是对文件进行过滤的，所以如果是文件名是以suffix提供的文件名结束的就返回。  
+		20. TrueFileFilter类的学习  
+			这个类实现的特别简单，关键不知道有什么用，两个都返回true，那和不是有FileFilter有什么区别呢，不懂。  
+		21. WildcardFileFilter类的学习  
+			这个类应该是整个FileFilter体系里面最复杂的一个类了。我们来好好看一下这个类，然后做一个总结。 今天脑子有点晕这个就不讲了，感觉还比较复杂，等哪天清晰了再分析，今天不行了，脑子转不过来了。  
+
+1.4 比较器
+
+	使用org.apache.commons.io.comparator 包下的类可以让你轻松的对文件或目录进行比较或者排序。
+	你只需提供一个文件列表，选择不同的类就可以实现不同方式的文件比较。
+	1.  首先我们来查看AbstractFileComparator这个抽象类
+		 首先我们来看一下IO包里面的Comparator，这个都比较好理解，首先是AbstractFileComparator这个类，他提供了两个接口，可以实现对Array和Collection的sort功能。
+			public File[] sort(File... files) {  
+		        if (files != null) {  
+		            Arrays.sort(files, this);  
+		        }  
+		        return files;  
+		    }
+		    public List<File> sort(List<File> files) {  
+	        if (files != null) {  
+	            Collections.sort(files, this);  
+	        }  
+	        return files;  
+	   		 }  
+	  2. CompositeFileComparator类的实现
+	  3. DefaultFileComparator类的实现
+	      这个类故名思意就是使用File的compare方法进行两个File的比较，这个里面需要注意的是里面提供了两个常量的Comparator，
+	      一个是ReverseComparator，这个会在后面讲到。
+	     /** Singleton default comparator instance */  
+   			 public static final Comparator<File> DEFAULT_COMPARATOR = new DefaultFileComparator();  
+		 /** Singleton reverse default comparator instance */  
+   		 	public static final Comparator<File> DEFAULT_REVERSE = new ReverseComparator(DEFAULT_COMPARATOR); 
+   	 4.  DirectoryFileComparator类的实现 	
+   	 	这个类也比较好理解，就是实现了Directory和File进行比较的函数，看到下面的函数的实现，我们就可以看到它的实现了。
+		   	 public int compare(File file1, File file2) {  
+		       return (getType(file1) - getType(file2));  
+		   }  
+		   private int getType(File file) {  
+		       if (file.isDirectory()) {  
+		           return 1;  
+		       } else {  
+		           return 2;  
+		       }  
+		   }  
+   	 5.  ExtensionFileComparator类的实现
+	     这个类从名称上应该可以看出是用来比较File的extension的，这个很好理解，但是在这里面有一个比较关键的就是比较的时候是case sensitive的还是insensitive的，
+	     这个里面在IO里面它实现了一个CaseSensitive这个类来实现的。我们下来分析一下这个类的实现：  构造函数是可以传递一个IOCase对象，用来标记是Case Sensitive，默认是Case Sensitive的。
+		   		 public ExtensionFileComparator() {  
+		   	  this.caseSensitivity = IOCase.SENSITIVE;  
+ 				}  
+			 public ExtensionFileComparator(IOCase caseSensitivity) {  
+			     this.caseSensitivity = caseSensitivity == null ? IOCase.SENSITIVE : caseSensitivity;  
+			 }  
+			 这下面就是这个类比较关键的地方，就是获得文件的后缀名，然后使用caseSensitivity来比较文件的后缀名的。
+			 public int compare(File file1, File file2) {  
+		        String suffix1 = FilenameUtils.getExtension(file1.getName());  
+		        String suffix2 = FilenameUtils.getExtension(file2.getName());  
+		        return caseSensitivity.checkCompareTo(suffix1, suffix2);  
+		    }  
+		6.  LastModifiedFileComparator类的实现
+  				这个类也比较好理解，就是用来比较文件的最后修改时间的，然后比较最后修改时间。
+  				
+	  		public int compare(File file1, File file2) {  
+	        long result = file1.lastModified() - file2.lastModified();  
+	        if (result < 0) {  
+	            return -1;  
+	        } else if (result > 0) {  
+	            return 1;  
+	        } else {  
+	            return 0;  
+	        }  
+		7.  NameFileComparator类的实现
+		8 .  PathFileComparator类的实现
+		9 .  ReverseComparator类的实现
+	10 .  SizeFileComparator类的实现
+     		这个类其实也比较好理解就是比较两个文件的大小，我们知道在Java里面File即可以是一个真实的File，也可以是一个Directory，所以遇到directory的时候我们到底要不要统计它的子元素的大小，所以他在设计的时候就考虑到了，专门设计了一个sumDirectoryContents变量，用来统计是不是计算directory里面文件的大学的总和。我们来具体的看一下代码：
+     		public int compare(File file1, File file2) {  
+			        long size1 = 0;  
+			        if (file1.isDirectory()) {  
+			            size1 = sumDirectoryContents && file1.exists() ? FileUtils.sizeOfDirectory(file1) : 0;  
+			        } else {  
+			            size1 = file1.length();  
+			        }  
+			        long size2 = 0;  
+			        if (file2.isDirectory()) {  
+			            size2 = sumDirectoryContents && file2.exists() ? FileUtils.sizeOfDirectory(file2) : 0;  
+			        } else {  
+			            size2 = file2.length();  
+			        }  
+			        long result = size1 - size2;  
+			        if (result < 0) {  
+			            return -1;  
+			        } else if (result > 0) {  
+			            return 1;  
+			        } else {  
+			            return 0;  
+			        }  
+			    } 
+		
+1.5 输入
+
+	在org.apache.commons.io.input包下有许多InputStrem类的实现，我们来测试一个最实用的类，
+		TeeInputStream类的学习，
+			将InputStream以及OutputStream作为参数传入其中，自动实现将输入流的数据读取到输出流中。
+			而且，通过传入第三个参数，一个boolean类型参数，可以在数据读取完毕之后自动关闭输入流和输出流。
+		ProxyInputStream类的学习
+		    这个类的设计意图不是特别明确，就是继承与JDK的FilterInputStream类的，但是在它的read(byte[] bytes)这个函数也是调用delegate的read(byte[])函数，父类的是直接调用的是read(byte[] bytes, int offset, int length)函数。
+		    这个类我们就可以理解成是调用封装的delete的InputStream吧。
+		AutoCloseInputStream类的学习
+			这个类的设计意图我们一看类名就比较明白，主要是自动关闭底层的InputStream流，就是每次在调用了read方法后都会判断是否关闭底层的InputStream流，就是把底层的InputStream设置成ClosedInputStream，这样对它的read方法的调用就不会抛出NPE异常了。
+			public void close() throws IOException {  in.close(); in = new ClosedInputStream();   } 		
+		ClosedInputStream类的学习
+		     这个类其实我们只要看一下它的实现应该就全明白了，就是把read方法返回-1就可以了。
+		      public int read() {return -1;}
+		CountingInputStream类的学习
+			这个类其实从类名称上面也能看出来它的使用意图，就是来统计读取的字节数的。
+			这个我就不多讲了，因为read方法就可以返回实际读到的字节数，然后在该类里面保存一个
+			统计变量的话，就可以来统计读取的字节数。
+		DemuxInputStream类的学习
+		    这个类比较好理解，就是从当前ThreadLocal里面取得底层的InputStream进行读操作。这个类的使用场景也比较明确了，就是在某个实际给ThreadLocal里面放上合适的InputStream流，然后在调用这个类的read方法的时候，该类是从ThreadLocal里面取得相应的InputStream进行操作。  
+		ClassLoaderObjectInputStream类的学习
+			这个类是继承ObjectInputStream的，在resolveClass函数里面会根据ObjectStreamClass类获得动态的进行加载class，所以在这个类的实现里面，在构造函数里面可以指定加载这个类所要使用的classloader。
+
+1.6 输出
+
+	与org.apache.commons.io.input包中的类相似， org.apache.commons.io.output包中同样有OutputStream类的实现，
+	1TeeOutputStream
+	它可以将输出流进行分流，换句话说我们可以用一个输入流将数据分别读入到两个不同的输出流。
+	2ByteArrayOutputStream 
+		  起始的时候第一个buffer的大小为32，它的filledBufferSum为0，count为0，然后我们给当前的buffer放入5个字节的数据，现在count为5， 下一次我们count - filedBufferSum 就是我们下一次要存储的buffer的指针，比如我们要放25个字节，那么现在count就变成30了，filledBufferSum仍然是0，我们再放入3个字节，现在count变成33，比buffer的初始大小大了，就扩容，新建一个buffer，把老的buffer放到buffers里面，然后filledBufferSum就变成32了，把扩容后剩余的1个字节放到新申请的buffer里面，下一次比如我们想再放入10个字节的数据，count是33，filedBufferSum是32,我们存放的指针应该是1，因为0字节我们存放了上次扩容后的剩余的字节数。
+	3. ThresholdingOutputStream   
+			这个类的意图主要是可以处理设置了临界值的OutputStream做出处理，   
+			它当然是复写了三个write方法。   
+			有三个步骤：   
+			             1. 检测是否到达临界值   
+			             2. 调用底层的Stream写数据   
+			             3. 改变已写数据的游标written   
+			里面有两个抽象的方法：   
+			protected abstract OutputStream getStream()   
+			protected abstract void thresholdReached()   
+			意图分别是得到底层的Stream，一个是可以让子类在threshold到达后可以做出响应。   
+	4. DeferredFileOutputStream   
+			是ThresholdingOutputStream的子类   
+			它的意图也很明确，主要是实现延迟写。   
+			首先是数据会写到基于内存的OutStream, 当到达threshold后，会将内存中的数据又   
+			写到指定的文件里面。这个类里面比较有亮点的是thresholdReached函数的实现，   
+			首先将memoryOutputStream里面的数据写到目标文件的FileOutputStream里面，   
+			将memoryOutputStream设置成null，然后将currentOutputStream更新为目标文件的   
+			FileOutputStream，这样后续的数据就会写入文件中。   
+	

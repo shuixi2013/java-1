@@ -1,0 +1,52 @@
+在DbUtils中，最常用的3个包为
+org.apache.commons.dbutils、
+org.apache.commons.dbutils.handlers以及
+org.apache.commons.dbutils.wrappers。
+
+org.apache.commons.dbutils包下的常用类，如下所示：
+1、DbUtils :									提供如close连接、装载 JDBC 驱动程序、rollback等常规工作的工具类；
+
+2、QueryRunner : 							该类简单化了 SQL 查询，它常与与 ResultSetHandler 组合在一起使用；
+		batch\query\update\insertBatch\insert
+
+3、AbstractQueryRunner：			是抽象类，QueryRunner和AsyncQueryRunner类的基类。
+		fillStatement\fillStatementWithBean\close\rethrow\prepareStatement\wrap(rs)
+	
+4、AsyncQueryRunner：				可插拔的方式执行SQL查询，处理结果集,  异步调用需要长时间执行的sql
+
+5、ResultSetHandler：					把ResultSet转换为别的对象的工具。
+
+6、BaseResultSetHandler：			把结果集转换成其它对象的扩展,包含对rs的包装。
+
+	ResultSetIterator：		包装结果集为一个迭代器。
+	RowProcessor：			将ResultSet行转换为别的对象的工具。
+		toArray\toBean\toBeanList\toMap
+	BasicRowProcessor:
+	BeanProcessor：		BeanProcessor匹配列名到Bean属性名，并转换结果集列到Bean对象的属性中。
+		toBean\toBeanList
+	
+	GenerousBeanProcessor：			提供了从数据库列名到JavaBean属性之间的智能匹配。
+
+	ProxyFactory：								产生JDBC接口的代理实现。
+	QueryLoader：								属性文件加载器，主要用于加载属性文件中的SQL到内存中。
+
+org.apache.commons.dbutils.handlers包下的常用类，如下所示：
+1、ArrayHandler ：将ResultSet中第一行的数据转化成对象数组；
+2、ArrayListHandler：将ResultSet中所有的数据转化成List，List中存放的是Object[]；
+3、BeanHandler ：将ResultSet中第一行的数据转化成类对象；
+4、BeanListHandler ：将ResultSet中所有的数据转化成List，List中存放的是类对象；
+5、ColumnListHandler ：将ResultSet中某一列的数据存成List，List中存放的是Object对象；
+6、KeyedHandler ：将ResultSet中存成映射，key为某一列对应为Map。Map中存放的是数据；
+7、MapHandler ：将ResultSet中第一行的数据存成Map映射；
+8、MapListHandler ：将ResultSet中所有的数据存成List。List中存放的是Map；
+9、ScalarHandler ：将ResultSet中一条记录的其中某一列的数据存成Object；
+
+org.apache.commons.dbutils.wrappers包下的常用类，如下所示：
+1、SqlNullCheckedResultSet ：该类是用来对sql语句执行完成之后的的数值进行null的替换；
+2、StringTrimmedResultSet ：去除ResultSet中中字段的左右空格；
+
+-------------------------------------------------
+）对于JavaBean的成员类型定义，有一条原则那就是：尽可能使用包装类型，而不要使用基本类型。
+
+
+

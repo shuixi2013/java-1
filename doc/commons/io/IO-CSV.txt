@@ -1,0 +1,13 @@
+http://www.cnblogs.com/exmyth/p/3960077.html				Java-IO-文件操作源码大全
+
+CSV比较 	各种开源软件比较https://github.com/uniVocity/csv-parsers-comparison
+uniVocity-parsers	https://github.com/uniVocity/univocity-parsers#parsers
+Super CSV	是一个速度奇快、免费跨平台的 CSV 格式数据的读写库，可以方便的处理对象、Map、列表的读写操作，以及自动化的类型转换和数据检查功能。
+		http://supercsv.sourceforge.net/ 
+Connla		Connla是一个Java包用于创建可导成TXT,CSV,HTML,XHTML,XML,PDF和XLS等格式的数据集
+csvjdbc	  	http://sourceforge.net/projects/csvjdbc/ csvjdbc说的简单点就是将csv中的表格内容（一般都是类似于一个数据表格）当做数据库的Table，通过	
+					自封装的引擎驱动（类似于jdbc）去解析， 也就是说：用户可以使用“SELECT * FROM table”这样的语句来获取csv文件中的数据。 
+opencsv		opencsv一个简单的CSV解析Java包。
+csvObjects(可以装换成对象) 、javacsv
+
+http://my.oschina.net/ludlows/blog/361355			利用python的csv库处理csv文件

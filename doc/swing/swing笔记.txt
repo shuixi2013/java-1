@@ -1,0 +1,13 @@
+
+
+http://www.jidesoft.com/products/component.htm  各种组件及面板设计
+http://www.jikexueyuan.com/course/233.html		WindowBuilder可视化
+http://www.oschina.net/p/beautyeye						让swing更好看
+http://www.oschina.net/p/spring-rich-client			spring的解耦企业级客户端
+http://dock.javaforge.com/download.html				Docking Frames  非常好的模板
+Matisse   																		swt可视化开发工具
+
+http://www.oschina.net/p/xui									java和xml结合开发富客户端
+http://www.oschina.net/p/swing-jcalendar				日期控件
+http://www.migcalendar.com/flash/images/large/theme_demo_2.png    复杂日历
+japura-gui-7.5.2-sources.jar										丰富的开发

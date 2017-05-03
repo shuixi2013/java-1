@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- status="OFF"，debug可以去掉，它的含义为是否记录log4j2本身的event信息，默认是OFF 动态监控配置文件修改monitorInterval="1800" -->
+<configuration status="OFF">
+	<!-- 全异步模式,在主程序开始 System.setProperty("Log4jContextSelector", "org.apache.logging.log4j.core.async.AsyncLoggerContextSelector"); -->
+	
+	<!-- 定义下面的引用名 -->
+	<Properties>
+		<property name="output_log_level">debug</property><!-- 日志输出级别 -->
+		<property name="log_pattern">%d{yyyy-MM-dd HH:mm:ss z} [%-5level] %c:%M:%L %msg %xEx%n</property>
+		<property name="file_name">target/rolling/app.log</property>
+		<property name="rolling_file_name">target/rolling/app-%d{yyyy-MM-dd}-%i.log.gz</property>
+		<property name="every_file_size">1024B</property><!-- 日志切割的最小单位 -->
+	</Properties>
+
+	<!--先定义所有的appender -->
+	<appenders>
+		<!-- 为Asynchronous Appenders 性能比同步快，比Asynchronous Loggers慢 -->
+		<!-- <Async name="Async"> <AppenderRef ref="MyFile" /> </Async> -->
+		
+		<!--这个输出控制台的配置 -->
+		<Console name="Console" target="SYSTEM_OUT">
+			<!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch） -->
+			<ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY" />
+			<!--这个都知道是输出日志的格式 -->
+			<PatternLayout pattern="${log_pattern}" charset="utf-8"/>
+		</Console>
+
+		<!--这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
+		<!-- 只保存10个文件,按月生成归档日志，可以使用 filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz" -->
+		<!-- <RollingFile name="RollingFile" fileName="${file_name}" filePattern="${rolling_file_name}">
+			<PatternLayout pattern="${log_pattern}" />
+			<SizeBasedTriggeringPolicy size="${every_file_size}" />
+			<DefaultRolloverStrategy max="10"/>
+		</RollingFile>-->
+
+		<!--如果需要配置多个Rollingfile地址，还需要在root下添加appender-ref ref="RollingFile1"/> -->
+		<!-- <RollingFile name="RollingFile1" fileName="logs/app1.log" filePattern="logs/app1-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n" />
+			<SizeBasedTriggeringPolicy size="10MB" />
+			<Policies> <TimeBasedTriggeringPolicy interval="1" modulate="true" /> </Policies>
+		</RollingFile> -->
+
+		<!--<File name="file" fileName="target/file/test.log" append="true" immediateFlush="false">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n" />
+		</File> -->
+
+		<!--Appender 2. 输出到滚动保存的文件, 触发保存日志文件的条件是日志文件大于3KB，只保存最新的10个日志 -->
+		<!-- DefaultRolloverStrategy 中的参数max，可以限制 SizeBasedTriggeringPolicy中size超出后，只保留max个存档 -->
+		<!--<RollingFile name="debugLog" fileName="${log.path}/debug.log"
+			filePattern="${log.path}/debug-%i.log">
+			<ThresholdFilter level="DEBUG" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<PatternLayout pattern="[%-5level][%d{yyyy-MM-dd HH:mm:ss}][%F:%L] - %m%n" />
+			<SizeBasedTriggeringPolicy size="3KB" />
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>-->
+
+		<!--Appender 3. 输出到滚动保存的文件, 触发保存日志文件的条件是每分钟第一次的日志事件。ERROR日志是按分钟产生日志 -->
+		<!--<RollingFile name="errorLog" fileName="${log.path}/error.log"
+			filePattern="${log.path}/error-%d{yyyy-MM-dd_HH-mm}.log">
+			<ThresholdFilter level="ERROR" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<PatternLayout pattern="[%-5level][%d{yyyy-MM-dd HH:mm:ss}][%C:%F:%L] - %m%n" />
+			<TimeBasedTriggeringPolicy />
+		</RollingFile>-->
+
+	</appenders>
+
+	<!--然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
+	<loggers>
+		<!--建立一个默认的root的logger，需要在root的level中指定输出的级别， -->
+		<root level="${output_log_level}">
+			<!-- <appender-ref ref="RollingFile" /> -->
+			<!-- <appender-ref ref="file" /> -->
+			<appender-ref ref="Console" />
+		</root>
+
+		<!-- <asyncRoot level="DEBUG"> <appender-ref ref="DevLog" /> <appender-ref 
+			ref="Console" /> </asyncRoot> -->
+
+		<!-- <AsyncLogger name="com.foo.Bar" level="trace" includeLocation="true"> 
+			<AppenderRef ref="RandomAccessFile" /> </AsyncLogger> -->
+
+		<!--制定输出com包中的logger -->
+		<!-- <logger name="com.baoyang.future.logTest" level="debug" additivity="false"> 
+			<appender-ref ref="Console" /> </logger> -->
+		
+		<!--忽略hibernate等第三方包的日志 -->
+		<!-- <Root level="OFF"> </Root> -->
+	</loggers>
+
+</configuration>
