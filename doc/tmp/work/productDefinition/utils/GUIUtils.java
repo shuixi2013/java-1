@@ -1,18 +1,12 @@
 package work.productDefinition.utils;
 
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Frame;
-import java.awt.Toolkit;
-import java.awt.Window;
+import javax.swing.*;
+import javax.swing.table.TableColumn;
+import java.awt.*;
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.table.TableColumn;
 
 public final class GUIUtils {
 	

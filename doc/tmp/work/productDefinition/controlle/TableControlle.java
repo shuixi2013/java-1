@@ -1,29 +1,21 @@
 package work.productDefinition.controlle;
 
-import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFormattedTextField;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-
 import org.jb2011.lnf.beautyeye.ch3_button.BEButtonUI;
-
 import work.productDefinition.component.layoutTable.Table;
 import work.productDefinition.sqldefinition.SQLDefinition;
 import work.productDefinition.utils.GUIUtils;
 import work.productDefinition.view.JCalendarPanelView;
 import work.productDefinition.view.JCheckBoxPanelView;
 import work.productDefinition.view.JRadioButtonPanelView;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 @SuppressWarnings("serial")
 public class TableControlle extends Table {

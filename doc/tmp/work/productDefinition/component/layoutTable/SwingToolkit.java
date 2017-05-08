@@ -1,16 +1,13 @@
 
 package work.productDefinition.component.layoutTable;
 
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.EventQueue;
+import work.productDefinition.component.layoutTable.BaseTableLayout.Debug;
+
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import javax.swing.JScrollPane;
-
-import work.productDefinition.component.layoutTable.BaseTableLayout.Debug;
 
 class SwingToolkit extends Toolkit<Component, Table, TableLayout> {
 	static Timer timer;

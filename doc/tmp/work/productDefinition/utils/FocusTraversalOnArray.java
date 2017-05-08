@@ -10,9 +10,7 @@
  *******************************************************************************/
 package work.productDefinition.utils;
 
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.FocusTraversalPolicy;
+import java.awt.*;
 
 /**
  * Cyclic focus traversal policy based on array of components.

@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.by.webService.axis2.client.data;
+package by.webService.axis2.client.data;
 
 public class Weather{
     float temperature;

@@ -1,14 +1,10 @@
 package work.productDefinition.component.calendar;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeListener;
-import java.io.File;
 import java.util.Date;
-
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 
 /**
  * A JCalendarButton is a button that displays a popup calendar (A

@@ -1,5 +1,8 @@
 package io.dJarchive.src.rar;
 
+import com.github.junrar.Archive;
+import com.github.junrar.exception.RarException;
+import com.github.junrar.rarfile.FileHeader;
 import io.dJarchive.src.JFile;
 import io.dJarchive.src.JInputStream;
 import io.dJarchive.src.format.StreamVolumeManager;
@@ -8,10 +11,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-import com.github.junrar.Archive;
-import com.github.junrar.exception.RarException;
-import com.github.junrar.rarfile.FileHeader;
 
 @io.dJarchive.src.FileExtensions(values = { "rar" })
 public class JRARInputStream extends JInputStream {

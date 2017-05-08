@@ -1,14 +1,13 @@
 package io.dJarchive.junRar;
 
+import com.github.junrar.Archive;
+import com.github.junrar.exception.RarException;
+import com.github.junrar.rarfile.FileHeader;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-
-import com.github.junrar.Archive;
-import com.github.junrar.exception.RarException;
-import com.github.junrar.impl.FileVolumeManager;
-import com.github.junrar.rarfile.FileHeader;
 
 public class ExtractArchiveTest {
 	public static void main(String[] args) {

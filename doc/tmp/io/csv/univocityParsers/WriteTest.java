@@ -5,8 +5,6 @@ import com.univocity.parsers.conversions.*;
 import com.univocity.parsers.csv.*;
 import com.univocity.parsers.fixed.*;
 import com.univocity.parsers.tsv.*;
-import java.io.*;
-import java.util.*;
 
 public class WriteTest {
 	List<Object[]> rows = Arrays.asList(new Object[][] {

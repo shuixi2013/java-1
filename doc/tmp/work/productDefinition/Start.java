@@ -1,11 +1,10 @@
 package work.productDefinition;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-
 import work.productDefinition.controlle.MainControlle;
 import work.productDefinition.utils.SingletonFactory;
+
+import javax.swing.*;
+import java.awt.*;
 
 @SuppressWarnings("serial")
 public class Start extends JFrame {

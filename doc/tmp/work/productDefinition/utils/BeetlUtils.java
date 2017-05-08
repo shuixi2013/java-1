@@ -1,15 +1,15 @@
 package work.productDefinition.utils;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.Map;
-
 import org.apache.commons.io.output.FileWriterWithEncoding;
 import org.beetl.core.Configuration;
 import org.beetl.core.GroupTemplate;
 import org.beetl.core.Template;
 import org.beetl.core.resource.FileResourceLoader;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.Map;
 /**
  * beetl模板引擎使用工具类
  * @author baoyang

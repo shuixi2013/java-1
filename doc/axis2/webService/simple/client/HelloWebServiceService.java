@@ -1,5 +1,5 @@
 
-package com.by.webService.simple.client;
+package by.webService.simple.client;
 
 import java.net.MalformedURLException;
 import java.net.URL;

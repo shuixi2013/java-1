@@ -1,12 +1,7 @@
 package work.productDefinition.view;
 
+import javax.swing.*;
 import java.awt.event.ActionListener;
-
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 
 //定义一个JPanel类扩展类，该类的对象包含多个横向排列的JRadioButton控件
 //且JPanel扩展类可以指定一个字符串作为TitledBorder

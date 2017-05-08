@@ -1,4 +1,4 @@
-package com.by.webService.axis2.server;
+package by.webService.axis2.server;
 import java.util.Random;
 /**
  * axis2服务端代码,放在了tomcat 8.0 WEBINF/pojo中负责发布服务

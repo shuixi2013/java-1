@@ -1,15 +1,13 @@
 package work.productDefinition.view;
 
-import java.awt.BorderLayout;
+import work.productDefinition.component.calendar.JCalendarButton;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import work.productDefinition.component.calendar.JCalendarButton;
 
 @SuppressWarnings("serial")
 public class JCalendarPanelView extends JPanel {

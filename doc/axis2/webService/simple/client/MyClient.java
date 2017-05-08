@@ -1,4 +1,4 @@
-package com.by.webService.simple.client;
+package by.webService.simple.client;
 
 public class MyClient {
 

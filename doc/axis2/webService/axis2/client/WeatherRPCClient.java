@@ -16,16 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.by.webService.axis2.client;
+package by.webService.axis2.client;
 
-import javax.xml.namespace.QName;
-
+import by.webService.axis2.client.data.Weather;
 import org.apache.axis2.AxisFault;
 import org.apache.axis2.addressing.EndpointReference;
 import org.apache.axis2.client.Options;
 import org.apache.axis2.rpc.client.RPCServiceClient;
 
-import com.by.webService.axis2.client.data.Weather;
+import javax.xml.namespace.QName;
 
 
 

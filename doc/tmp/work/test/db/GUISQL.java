@@ -1,10 +1,5 @@
 package work.test.db;
 
-import javax.swing.*;
-
-import java.awt.*;
-import java.awt.event.*;
-
 public class GUISQL extends JFrame {
 
 	private static final long serialVersionUID = 1L;

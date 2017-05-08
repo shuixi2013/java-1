@@ -1,5 +1,5 @@
 
-package com.by.webService.simple.client;
+package by.webService.simple.client;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -32,8 +32,8 @@ public interface HelloWebService {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "sayHello", targetNamespace = "http://server.simple.webService.by.com/", className = "com.by.webService.simple.client.SayHello")
-    @ResponseWrapper(localName = "sayHelloResponse", targetNamespace = "http://server.simple.webService.by.com/", className = "com.by.webService.simple.client.SayHelloResponse")
+    @RequestWrapper(localName = "sayHello", targetNamespace = "http://server.simple.webService.by.com/", className = "by.webService.simple.client.SayHello")
+    @ResponseWrapper(localName = "sayHelloResponse", targetNamespace = "http://server.simple.webService.by.com/", className = "by.webService.simple.client.SayHelloResponse")
     @Action(input = "http://server.simple.webService.by.com/HelloWebService/sayHelloRequest", output = "http://server.simple.webService.by.com/HelloWebService/sayHelloResponse")
     public String sayHello(
         @WebParam(name = "arg0", targetNamespace = "")

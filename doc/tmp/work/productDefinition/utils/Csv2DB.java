@@ -1,16 +1,12 @@
 package work.productDefinition.utils;
 
+import db.senior.MetaDataInfoProvider;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
-import db.senior.MetaDataInfoProvider;
+import java.sql.*;
 
 public class Csv2DB extends Thread {
 	private static final String user = "monetdb";

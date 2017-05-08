@@ -1,17 +1,16 @@
 package io.dJarchive.junRar;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.io.output.ByteArrayOutputStream;
-
 import com.github.junrar.Archive;
 import com.github.junrar.exception.RarException;
 import com.github.junrar.exception.RarException.RarExceptionType;
 import com.github.junrar.io.ReadOnlyAccessFile;
 import com.github.junrar.rarfile.FileHeader;
+import org.apache.commons.io.output.ByteArrayOutputStream;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JUnRarTestUtil {
 	private static List<String> successfulFiles = new ArrayList<String>();

@@ -1,4 +1,4 @@
-package com.by.webService.axis2.client;
+package by.webService.axis2.client;
 
 import javax.xml.namespace.QName;
 

@@ -4,6 +4,8 @@ import io.csv.univocityParsers.CsvUtils;
 import io.dJarchive.src.JArchive;
 import io.dJarchive.src.JFile;
 import io.dJarchive.src.JInputStream;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,9 +13,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.lang3.StringUtils;
 
 public class RarUtils {
 

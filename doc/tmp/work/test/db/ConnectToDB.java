@@ -1,7 +1,5 @@
 package work.test.db;
 
-import java.sql.*;
-
 public class ConnectToDB {
 	private String bruker;
 	private String passord;

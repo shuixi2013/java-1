@@ -1,12 +1,8 @@
 package work.productDefinition.view;
 
-import java.awt.Component;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
-import javax.swing.BoxLayout;
-import javax.swing.JCheckBox;
-import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class JCheckBoxPanelView extends JPanel  {

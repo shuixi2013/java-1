@@ -1,4 +1,4 @@
-package com.by.webService.simple.server;
+package by.webService.simple.server;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;

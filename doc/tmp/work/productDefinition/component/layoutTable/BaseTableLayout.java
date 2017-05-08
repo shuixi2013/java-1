@@ -27,10 +27,10 @@
 
 package work.productDefinition.component.layoutTable;
 
+import work.productDefinition.component.layoutTable.Value.FixedValue;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import work.productDefinition.component.layoutTable.Value.FixedValue;
 
 /** Base layout functionality.
  * @author Nathan Sweet */

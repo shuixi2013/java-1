@@ -1,14 +1,11 @@
 
 package work.productDefinition.component.layoutTable;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics2D;
-import java.awt.Insets;
+import work.productDefinition.component.layoutTable.SwingToolkit.DebugRect;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import work.productDefinition.component.layoutTable.SwingToolkit.DebugRect;
 
 class TableLayout extends BaseTableLayout<Component, Table, TableLayout, SwingToolkit> {
 	ArrayList<DebugRect> debugRects;

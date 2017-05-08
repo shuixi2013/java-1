@@ -1,19 +1,15 @@
 package io.dJarchive.test;
 
-import static org.junit.Assert.assertTrue;
 import io.dJarchive.src.JArchive;
 import io.dJarchive.src.JFile;
 import io.dJarchive.src.JInputStream;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.*;
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertTrue;
 
 public class UnarchiveTest {
 	private static final String ARCHIVE_PATH = "";

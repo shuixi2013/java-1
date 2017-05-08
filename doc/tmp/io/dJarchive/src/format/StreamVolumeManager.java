@@ -1,13 +1,12 @@
 package io.dJarchive.src.format;
 
+import com.github.junrar.Archive;
+import com.github.junrar.Volume;
+import com.github.junrar.VolumeManager;
 import io.dJarchive.src.JFile;
 
 import java.io.IOException;
 import java.io.InputStream;
-
-import com.github.junrar.Archive;
-import com.github.junrar.Volume;
-import com.github.junrar.VolumeManager;
 
 public class StreamVolumeManager implements VolumeManager {
 	private JFile file;
