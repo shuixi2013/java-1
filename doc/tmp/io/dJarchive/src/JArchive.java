@@ -3,8 +3,6 @@ package io.dJarchive.src;
 import io.dJarchive.src.format.JDIRInputStream;
 import io.dJarchive.src.format.JRAWInputStream;
 
-import java.io.*;
-
 public class JArchive {
 	public static JInputStream getJInputStream(File file) throws FileNotFoundException, IOException {
 		if (file.isDirectory()) {

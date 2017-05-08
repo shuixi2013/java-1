@@ -3,8 +3,6 @@ package work.productDefinition.component.layoutTable;
 
 import work.productDefinition.component.layoutTable.BaseTableLayout.Debug;
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;

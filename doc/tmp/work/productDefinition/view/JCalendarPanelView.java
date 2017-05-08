@@ -2,8 +2,6 @@ package work.productDefinition.view;
 
 import work.productDefinition.component.calendar.JCalendarButton;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

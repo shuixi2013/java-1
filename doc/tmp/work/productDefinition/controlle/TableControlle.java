@@ -8,8 +8,6 @@ import work.productDefinition.view.JCalendarPanelView;
 import work.productDefinition.view.JCheckBoxPanelView;
 import work.productDefinition.view.JRadioButtonPanelView;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;

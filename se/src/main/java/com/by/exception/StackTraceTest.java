@@ -1,6 +1,6 @@
 package com.by.exception;
 
-import java.util.*;
+import java.util.Scanner;
 
 /**
  * A program that displays a trace feature of a recursive method call.

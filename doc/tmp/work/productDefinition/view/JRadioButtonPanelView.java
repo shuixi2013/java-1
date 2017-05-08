@@ -1,6 +1,5 @@
 package work.productDefinition.view;
 
-import javax.swing.*;
 import java.awt.event.ActionListener;
 
 //定义一个JPanel类扩展类，该类的对象包含多个横向排列的JRadioButton控件

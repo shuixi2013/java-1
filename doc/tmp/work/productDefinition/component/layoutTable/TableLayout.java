@@ -3,7 +3,6 @@ package work.productDefinition.component.layoutTable;
 
 import work.productDefinition.component.layoutTable.SwingToolkit.DebugRect;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,9 +1,6 @@
 
 package work.productDefinition.component.layoutTable;
 
-import javax.swing.*;
-import java.awt.*;
-
 public class Stack extends JPanel {
 	public Stack () {
 		super(new LayoutManager() {

@@ -29,5 +29,6 @@ public class ThreadExceptionTest implements Runnable {
 
 	public static void main(String[] args) {
 		new Thread(new ThreadExceptionTest()).start();
+		System.out.println("end");
 	}
 }

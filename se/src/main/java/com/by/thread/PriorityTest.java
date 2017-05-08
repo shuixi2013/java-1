@@ -11,6 +11,10 @@ package com.by.thread;
  * @author Yeeku.H.Lee kongyeeku@163.com
  * @version 1.0
  */
+
+/**
+ * 高级不一定先执行完,只是获得的时间片比较多
+ */
 public class PriorityTest extends Thread {
 	// 定义一个有参数的构造器，用于创建线程时指定name
 	public PriorityTest(String name) {

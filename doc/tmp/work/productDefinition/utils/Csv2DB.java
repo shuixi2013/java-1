@@ -6,7 +6,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.sql.*;
 
 public class Csv2DB extends Thread {
 	private static final String user = "monetdb";

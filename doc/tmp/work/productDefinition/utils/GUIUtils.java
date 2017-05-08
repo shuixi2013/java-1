@@ -1,8 +1,6 @@
 package work.productDefinition.utils;
 
-import javax.swing.*;
 import javax.swing.table.TableColumn;
-import java.awt.*;
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

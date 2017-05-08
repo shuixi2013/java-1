@@ -10,8 +10,6 @@
  *******************************************************************************/
 package work.productDefinition.utils;
 
-import java.awt.*;
-
 /**
  * Cyclic focus traversal policy based on array of components.
  * <p>

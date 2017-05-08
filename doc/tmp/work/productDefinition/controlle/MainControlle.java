@@ -2,9 +2,6 @@ package work.productDefinition.controlle;
 
 import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 
-import javax.swing.*;
-import java.awt.*;
-
 @SuppressWarnings("serial")
 public class MainControlle extends JFrame {
 
