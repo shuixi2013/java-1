@@ -14,17 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package by.reflect;
+package com.by.reflect;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * Creates proxy implementations of JDBC interfaces.  This avoids
@@ -42,6 +36,13 @@ public class ProxyFactory {
     private static final ProxyFactory instance = new ProxyFactory();
 
     /**
+     * Protected constructor for ProxyFactory subclasses to use.
+     */
+    protected ProxyFactory() {
+        super();
+    }
+
+    /**
      * Returns the Singleton instance of this class.
      *
      * @return singleton instance
@@ -51,26 +52,20 @@ public class ProxyFactory {
     }
 
     /**
-     * Protected constructor for ProxyFactory subclasses to use.
-     */
-    protected ProxyFactory() {
-        super();
-    }
-
-    /**
      * Convenience method to generate a single-interface proxy using the handler's classloader
      *
-     * @param <T> The type of object to proxy
-     * @param type The type of object to proxy
+     * @param <T>     The type of object to proxy
+     * @param type    The type of object to proxy
      * @param handler The handler that intercepts/overrides method calls.
      * @return proxied object
      */
     public <T> T newProxyInstance(Class<T> type, InvocationHandler handler) {
-        return type.cast(Proxy.newProxyInstance(handler.getClass().getClassLoader(), new Class<?>[] {type}, handler));
+        return type.cast(Proxy.newProxyInstance(handler.getClass().getClassLoader(), new Class<?>[]{type}, handler));
     }
 
     /**
      * Creates a new proxy <code>CallableStatement</code> object.
+     *
      * @param handler The handler that intercepts/overrides method calls.
      * @return proxied CallableStatement
      */
@@ -80,6 +75,7 @@ public class ProxyFactory {
 
     /**
      * Creates a new proxy <code>Connection</code> object.
+     *
      * @param handler The handler that intercepts/overrides method calls.
      * @return proxied Connection
      */
@@ -89,6 +85,7 @@ public class ProxyFactory {
 
     /**
      * Creates a new proxy <code>Driver</code> object.
+     *
      * @param handler The handler that intercepts/overrides method calls.
      * @return proxied Driver
      */
@@ -98,6 +95,7 @@ public class ProxyFactory {
 
     /**
      * Creates a new proxy <code>PreparedStatement</code> object.
+     *
      * @param handler The handler that intercepts/overrides method calls.
      * @return proxied PreparedStatement
      */
@@ -107,6 +105,7 @@ public class ProxyFactory {
 
     /**
      * Creates a new proxy <code>ResultSet</code> object.
+     *
      * @param handler The handler that intercepts/overrides method calls.
      * @return proxied ResultSet
      */
@@ -116,6 +115,7 @@ public class ProxyFactory {
 
     /**
      * Creates a new proxy <code>ResultSetMetaData</code> object.
+     *
      * @param handler The handler that intercepts/overrides method calls.
      * @return proxied ResultSetMetaData
      */
@@ -125,6 +125,7 @@ public class ProxyFactory {
 
     /**
      * Creates a new proxy <code>Statement</code> object.
+     *
      * @param handler The handler that intercepts/overrides method calls.
      * @return proxied Statement
      */
