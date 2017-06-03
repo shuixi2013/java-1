@@ -1,0 +1,76 @@
+package com.by.mockito;
+
+import java.util.List;
+
+/**
+ * description:
+ * create       2017/6/3 9:37
+ *
+ * @author email:baoyang@jd.com,ERP:baoyang3
+ * @version 1.0.0
+ */
+
+public class Book {
+
+    private String isbn;
+    private String title;
+    private List<String> authors;
+    private String publication;
+    private Integer yearOfPublication;
+    private Integer numberOfPages;
+    private String image;
+
+    public Book(String isbn,
+                String title,
+                List<String> authors,
+                String publication,
+                Integer yearOfPublication,
+                Integer numberOfPages,
+                String image) {
+
+        this.isbn = isbn;
+        this.title = title;
+        this.authors = authors;
+        this.publication = publication;
+        this.yearOfPublication = yearOfPublication;
+        this.numberOfPages = numberOfPages;
+        this.image = image;
+
+    }
+
+    public void setParam(String str){
+       return ;
+    }
+
+    public String getParam(String str){
+        return str;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public List<String> getAuthors() {
+        return authors;
+    }
+
+    public String getPublication() {
+        return publication;
+    }
+
+    public Integer getYearOfPublication() {
+        return yearOfPublication;
+    }
+
+    public Integer getNumberOfPages() {
+        return numberOfPages;
+    }
+
+    public String getImage() {
+        return image;
+    }
+}
