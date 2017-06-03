@@ -27,6 +27,7 @@
           <scope>provided</scope>
       </dependency>
 
+      <!--编译时生成不可变类-->
       <dependency>
           <groupId>org.immutables</groupId>
           <artifactId>value</artifactId>
