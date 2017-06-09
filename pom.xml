@@ -19,6 +19,8 @@
         <module>test</module>
         <module>concurrence</module>
         <module>test-lombok</module>
+        <module>test-mock</module>
+        <module>test-java8</module>
     </modules>
 
     <dependencies>
