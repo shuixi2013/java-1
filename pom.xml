@@ -21,6 +21,9 @@
         <module>test-lombok</module>
         <module>test-mock</module>
         <module>test-java8</module>
+        <module>test-checkStyle</module>
+        <module>test-guava</module>
+        <module>test-contiPerf</module>
     </modules>
 
     <dependencies>
