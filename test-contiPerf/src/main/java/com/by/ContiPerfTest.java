@@ -17,15 +17,25 @@ import java.util.concurrent.TimeUnit;
  * @version 1.0.0
  */
 public class ContiPerfTest {
+    /**
+     *
+     */
+    private static final int SLEEPNUM = 30;
 
+    /**
+     *
+     */
     @Rule
     public ContiPerfRule i = new ContiPerfRule();
 
+    /**
+     * @throws Exception exception
+     */
     @Test
-    @PerfTest(invocations = 10, threads = 3,duration = 500)
-    @Required(throughput = 1,max = 1200, average = 250, totalTime = 20000)
+    @PerfTest(invocations = 10, threads = 3, duration = 500)
+    @Required(throughput = 1, max = 1200, average = 250, totalTime = 20000)
     public void test1() throws Exception {
-        System.out.println(Thread.currentThread().getId()+"now:"+Instant.now());
-        TimeUnit.MILLISECONDS.sleep(30);
+        System.out.println(Thread.currentThread().getId() + "now:" + Instant.now());
+        TimeUnit.MILLISECONDS.sleep(SLEEPNUM);
     }
 }

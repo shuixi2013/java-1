@@ -201,9 +201,9 @@
             <property name="format" value="printStackTrace"/>
         </module>-->
         <!-- 代码质量 -->
-        <!-- 圈复杂度
+        <!-- 圈复杂度 -->
         <module name="CyclomaticComplexity">
-              <property name="max" value="2"/>
-        </module> -->
+            <property name="max" value="8"/>
+        </module>
     </module>
 </module>

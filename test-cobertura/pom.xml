@@ -1,0 +1,86 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>java</artifactId>
+        <groupId>com.by</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>test-cobertura</artifactId>
+    <packaging>jar</packaging>
+
+    <name>test-cobertura</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <!--控制统计范围-->
+                    <!--<instrumentation>-->
+                        <!--&lt;!&ndash; 这种方式我没试验成功.如果有谁配置生效了,请留言告知 http://qyf404.cnblogs.com-->
+                        <!--<ignores>-->
+                          <!--<ignore>com.example.boringcode.*</ignore>-->
+                        <!--</ignores>-->
+                        <!--&ndash;&gt;-->
+                        <!--&lt;!&ndash;忽略列表.根据class文件路径进行匹配&ndash;&gt;-->
+                        <!--<excludes>-->
+                            <!--<exclude>com/by/**/App.class</exclude>-->
+                        <!--</excludes>-->
+                    <!--</instrumentation>-->
+                    <check>
+                        <!--每个类的分支覆盖率-->
+                        <branchRate>85</branchRate>
+                        <!--每个类的代码行覆盖率-->
+                        <lineRate>85</lineRate>
+                        <!--校验失败则中止.即为true时如果校验失败则打包执行失败,反之则只是打出告警日志-->
+                        <haltOnFailure>true</haltOnFailure>
+                        <!--整体的分支覆盖率-->
+                        <totalBranchRate>85</totalBranchRate>
+                        <!--整体的代码行覆盖率-->
+                        <totalLineRate>85</totalLineRate>
+                        <!--每个包的分支行覆盖率-->
+                        <packageBranchRate>85</packageBranchRate>
+                        <!--每个包的代码行覆盖率-->
+                        <packageLineRate>85</packageLineRate>
+                        <!--<regexes>-->
+                            <!--&lt;!&ndash;通过表达式设定覆盖率伐值&ndash;&gt;-->
+                            <!--<regex>-->
+                                <!--<pattern>com.qyf404.learn.*</pattern>-->
+                                <!--<branchRate>90</branchRate>-->
+                                <!--<lineRate>80</lineRate>-->
+                            <!--</regex>-->
+                        <!--</regexes>-->
+                    </check>
+                    <!--这个标签一般不在这配置,一般跟着命令后面作为参数使用-->
+                    <!--<format>xml</format>-->
+                    <formats>
+                        <format>xml</format>
+                        <format>html</format>
+                    </formats>
+                    <!--<skip>true</skip>-->
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>prepare-package</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
