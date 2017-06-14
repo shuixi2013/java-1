@@ -25,6 +25,7 @@
         <module>test-guava</module>
         <module>test-contiPerf</module>
         <module>test-cobertura</module>
+        <module>test-findbugs</module>
     </modules>
 
     <dependencies>
