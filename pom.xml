@@ -26,6 +26,7 @@
         <module>test-contiPerf</module>
         <module>test-cobertura</module>
         <module>test-findbugs</module>
+        <module>test-groovy</module>
     </modules>
 
     <dependencies>
